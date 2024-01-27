@@ -8,9 +8,69 @@
 #+BEGIN_SRC shell
 git clone https://github.com/amn1729/muy-importante --depth=1
 #+END_SRC
-*** Usage
+** Usage
 Just pipe the file content into the script and it will print updated content
 #+BEGIN_SRC shell
 chmod +x main.pl
 cat SomeFile.tsx | ./main.pl
+#+END_SRC
+*** Example
+Consider someFile.js with content
+#+BEGIN_SRC js
+// import PersonIcon from "@mui/icons-material/Person";
+import CallIcon from "@mui/icons-material/Call";
+import ChatHeader from "./ChatHeader";
+import ChatIcon from "./ChatHeader";
+import ChatStuff from "../../ChatStuff";
+import MessageBox from "screens/Chat/MessageBox";
+import MessageInput, { Recipient } from "./MessageInput";
+import { Center, Loading, Text, BlurryLoader, InfiniteList } from "components";
+import { Chat as ChatService } from "services";
+import { LoadingButton } from "@mui/lab";
+import { Stack, Divider } from "@mui/material";
+import { toast } from "react-toastify";
+import { unit, Some, isImage, Maybe, toMaybe, isPdf } from "helpers";
+import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "react-router-dom";
+import { useState, useMemo, useEffect } from "react";
+
+const someVar = "someVar";
+
+function test() {
+  console.log("some");
+}
+#+END_SRC
+#+BEGIN_SRC shell
+cat someFile.js | ./main.pl  
+#+END_SRC
+Will produce
+#+BEGIN_SRC js
+import { useState, useMemo, useEffect } from "react";
+import { LoadingButton } from "@mui/lab";
+import { Stack, Divider } from "@mui/material";
+
+// icons imports
+import CallIcon from "@mui/icons-material/Call";
+import ChatIcon from "./ChatHeader";
+// import PersonIcon from "@mui/icons-material/Person";
+
+// others imports
+import { toast } from "react-toastify";
+import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "react-router-dom";
+
+// local imports
+import { Center, Loading, Text, BlurryLoader, InfiniteList } from "components";
+import { Chat as ChatService } from "services";
+import { unit, Some, isImage, Maybe, toMaybe, isPdf } from "helpers";
+import MessageBox from "screens/Chat/MessageBox";
+import ChatStuff from "../../ChatStuff";
+import ChatHeader from "./ChatHeader";
+import MessageInput, { Recipient } from "./MessageInput";
+
+const someVar = "someVar";
+
+function test() {
+  console.log("some");
+}
 #+END_SRC
