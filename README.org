@@ -12,7 +12,5 @@ git clone https://github.com/amn1729/muy-importante --depth=1
 Just pipe the file content into the script and it will print updated content
 #+BEGIN_SRC shell
 chmod +x main.pl
-./run.sh
-#+BEGIN_SRC shell
 cat SomeFile.tsx | ./main.pl
 #+END_SRC
