@@ -102,7 +102,7 @@ sub main {
     print_imports(\@reacts);
     print_imports(\@muis);
     print_imports(\@icons, "icons");
-    print_imports(\@others, "others");
+    print_imports(\@others, "other");
     print_imports(\@local_pacs, "local");
     print_imports(\@screens);
     print_imports(\@local_files);
