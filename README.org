@@ -54,7 +54,7 @@ import CallIcon from "@mui/icons-material/Call";
 import ChatIcon from "./ChatHeader";
 // import PersonIcon from "@mui/icons-material/Person";
 
-// others imports
+// other imports
 import { toast } from "react-toastify";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
