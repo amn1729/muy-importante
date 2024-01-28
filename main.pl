@@ -12,6 +12,7 @@ my @local_files = ();
 my @screens     = ();
 
 my @LOCAL_DIRS = (
+    "AppRoutes",
     "components",
     "helpers",
     "hooks",
@@ -50,6 +51,15 @@ sub print_imports {
     print "\n";
 }
 
+sub sort_module_imports {
+    my $imports = shift;
+    my ($default, $named) = $imports =~ m/(.*?)\{(.*?)\}/;
+    my @named_imports = split ",", $named;
+    @named_imports = map { $_ =~ s/^\s+|\s+$//g; $_ } @named_imports;
+    @named_imports = sort naturally @named_imports;
+    return $default . "{ " . (join ", ", @named_imports) . " }";
+}
+
 sub main {
     my $last_line_valid = 1;
     my $rest = "";
@@ -71,12 +81,17 @@ sub main {
         }
 
         next unless ($_);
-        my ($module, $from) = $_ =~ m/.*?import (.*?) from "(.*)"/;
+        my ($imports, $from) = $_ =~ m/.*?import (.*?) from "(.*)"/;
         next unless ($from);
+
+        if ($imports =~ m/.*\{.*\}.*/) {
+            my $sorted_module_imports = sort_module_imports($imports);
+            $_ = qq{import $sorted_module_imports from "$from";};
+        }
 
         if ($from eq "react") {
             push(@reacts, $_);
-        } elsif ($module =~ m/Icon\b/) {
+        } elsif ($imports =~ m/Icon\b/) {
             push(@icons, $_);
         } elsif ($from =~ m/\@mui/) {
             push(@muis, $_);
