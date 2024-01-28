@@ -45,9 +45,9 @@ cat someFile.js | ./main.pl
 #+END_SRC
 Will produce
 #+BEGIN_SRC js
-import { useState, useMemo, useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { Divider, Stack } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import { Stack, Divider } from "@mui/material";
 
 // icons imports
 import CallIcon from "@mui/icons-material/Call";
@@ -60,9 +60,9 @@ import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 
 // local imports
-import { Center, Loading, Text, BlurryLoader, InfiniteList } from "components";
+import { BlurryLoader, Center, InfiniteList, Loading, Text } from "components";
 import { Chat as ChatService } from "services";
-import { unit, Some, isImage, Maybe, toMaybe, isPdf } from "helpers";
+import { Maybe, Some, isImage, isPdf, toMaybe, unit } from "helpers";
 import MessageBox from "screens/Chat/MessageBox";
 import ChatStuff from "../../ChatStuff";
 import ChatHeader from "./ChatHeader";
