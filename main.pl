@@ -12,6 +12,9 @@ my @local_files = ();
 my @screens     = ();
 
 my @LOCAL_DIRS = (
+    "app/Common",
+    "RolesMap",
+    "apis",
     "AppRoutes",
     "components",
     "helpers",
@@ -64,10 +67,16 @@ sub main {
     my $last_line_valid = 1;
     my $rest = "";
 
-    while (<>) {
-        next unless ($_);
-        if ($_ eq "\n") {
-            $rest .= $_;
+    my $content = "";
+    while (<>) { $content .= $_ };
+    $content =~ s/,\n/,/g;
+    $content =~ s/(import.*?)\{\n/\1\{/g;
+
+    for (split "\n", $content) {
+        # next unless ($_);
+        # if ($_ eq "\n") {
+        unless ($_) {
+            $rest .= "\n";
             next;
         }
         my $line = $_;
@@ -75,7 +84,7 @@ sub main {
         my $curr_line_valid = $_ =~ m/^(\/\/|import)/;
 
         unless ($curr_line_valid && $last_line_valid) {
-            $rest .= $line;
+            $rest .= $line . "\n";
             $last_line_valid = 0;
             next;
         }
