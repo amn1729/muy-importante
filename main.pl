@@ -70,7 +70,7 @@ sub main {
     my $content = "";
     while (<>) { $content .= $_ };
     $content =~ s/,\n/,/g;
-    $content =~ s/(import.*?)\{\n/\1\{/g;
+    $content =~ s/(import.*?)\{\n/$1\{/g;
 
     for (split "\n", $content) {
         # next unless ($_);
